@@ -1,29 +1,46 @@
-create table if not exists cursos (
-nome varchar(30) not null unique,
-descricao text,
-carga int unsigned,
-totaulas int unsigned,
-ano year default '2020'
+create database cadastro
+default character set utf8
+default collate utf8_general_ci;
+
+use cadastro;
+
+create table pessoas (
+id int not null auto_increment,
+nome varchar(30) not null,
+nascimento date,
+sexo enum('M', 'F'),
+peso decimal(5,2),
+altura decimal(3,2),
+nacionalidade varchar(20) default 'Brasil',
+primary key (id)
 ) default charset = utf8;
 
-alter table cursos
-add column idcurso int first;
+alter table pessoas
+add column profissao varchar(10) after nome;
 
-alter table cursos
-add primary key(idcurso);
+alter table pessoas
+add column codigo int first;
 
-create table if not exists teste(
-id int,
-nome varchar(10),
-idade int);
+alter table pessoas
+modify column profissao varchar(20) not null default '';
 
-insert into teste value
-('1', 'Pedro', '22'),
-('2', 'Maria', '12'),
-('3', 'Maricota', '77');
+alter table pessoas
+change column profissao prof varchar(20);
 
-select * from teste;
+alter table pessoas
+rename to gafanhotos;
 
-drop table if exists teste;
 
-describe cursos;
+
+
+
+
+
+
+
+
+
+
+
+
+
